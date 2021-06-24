@@ -1,7 +1,6 @@
-FROM centos
-RUN yum -y update
-RUN yum -y install httpd
+FROM centos:latest
+RUN yum update -y
+RUN yum install httpd -y
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
-COPY httpd.conf /etc/httpd/conf/
-CMD httpd -DFOREGROUND
+ENTRYPOINT ["/usr/sbin/httpd","-D","FOREGROUND"]
